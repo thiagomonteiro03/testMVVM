@@ -3,6 +3,10 @@ package com.example.testmvvm.ui.main
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainViewModel(private val repository: MainRepository) : ViewModel() {
 
@@ -15,6 +19,15 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
 
     }
 
+    fun getFilmesCoroutines(){
+        CoroutineScope(Dispatchers.Main).launch {
+            val filmes = withContext(Dispatchers.Default) {
+                repository.getFilmesCoroutines()
+            }
+
+            filmesLiveData.value = filmes
+        }
+    }
     class MainViewModelFactory (
         private val repository: MainRepository
         ) : ViewModelProvider.Factory{

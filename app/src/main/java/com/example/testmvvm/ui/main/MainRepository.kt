@@ -1,5 +1,9 @@
 package com.example.testmvvm.ui.main
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
+
 class MainRepository {
 
     fun getFilmes(callback: (filmes : List<Filme>) -> Unit) {
@@ -13,7 +17,15 @@ class MainRepository {
         }).start()
     }
 
-    fun getFilmesCoroutines(): List<Filme> {
+    suspend fun getFilmesCoroutines(): List<Filme> {
+
+        return withContext(Dispatchers.Default) {
+            delay(3000)
+            listOf(
+                Filme(1,"Título 01"),
+                Filme(1,"Título 02")
+            )
+        }
 
     }
 }
