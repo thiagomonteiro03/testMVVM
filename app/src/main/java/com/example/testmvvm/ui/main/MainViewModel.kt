@@ -10,7 +10,7 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
 
     fun getFilmes() {
         repository.getFilmes { filmes ->
-            filmesLiveData.value = filmes
+            filmesLiveData.postValue(filmes)
         }
 
     }

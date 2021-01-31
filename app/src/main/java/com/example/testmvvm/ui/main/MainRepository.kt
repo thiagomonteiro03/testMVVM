@@ -10,6 +10,10 @@ class MainRepository {
                 Filme(1,"Título 01"),
                 Filme(1,"Título 02")
             ))
-        })
+        }).start()
+    }
+
+    fun getFilmesCoroutines(): List<Filme> {
+
     }
 }

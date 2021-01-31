@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.example.testmvvm.R
+import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
 
@@ -30,8 +31,10 @@ class MainFragment : Fragment() {
             .get(MainViewModel::class.java)
 
         viewModel.filmesLiveData.observe(viewLifecycleOwner, Observer { filmes ->
-
+            textViewFilmes.text = filmes[0].titulo
         })
+
+        viewModel.getFilmes()
     }
 
 }
