@@ -1,10 +1,9 @@
 package com.example.testmvvm.ui.main
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.Runnable
 
 class MainRepository {
 
@@ -27,6 +26,13 @@ class MainRepository {
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
+                .create(MyAPI::class.java)
+
+        GlobalScope.launch(Dispatchers.IO) {
+            val events = api.getEvents().
+        }
+
+
 
         return withContext(Dispatchers.Default) {
             delay(3000)
